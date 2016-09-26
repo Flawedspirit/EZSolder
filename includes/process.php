@@ -179,17 +179,10 @@ function packageFiles($path) {
 }
 
 function createZip($src, $dst, $include_dir = false) {
-    if(!extension_loaded('zip')) throw new Exception(lang('debug_php_no_zip', true));
+    if(!@extension_loaded('zip')) throw new Exception(lang('debug_php_no_zip', true));
 
-    try {
-        @file_exists($src);
-    } catch (Exception $x) {
-        outputErrorMessage(lang('debug_no_src_file', true, $src));
-    }
-
-    if(file_exists($dst)) {
-        unlink($dst); //exception
-    }
+    if(!@file_exists($src)) throw new Exception(lang('debug_no_src_file', true, $src));
+    if(!@unlink($dst)) throw new Exception();
 
     $zip = new ZipArchive();
     if(!$zip->open($dst, ZIPARCHIVE::CREATE)) {
