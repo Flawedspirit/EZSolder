@@ -8,6 +8,7 @@ EZSolder is a faster way of packaging and uploading an assortment of files that 
 
 ## Requirements
 - PHP 5.2+
+- The PHP native mysql driver (usually labeled php#-mysqlnd, where # is your version)
 - A MySQL database
 - [Technic Solder](https://solder.io) and associated database tables
 - Knowledge of how to operate Apache/Nginx/Lighttpd/IIS
