@@ -1,5 +1,5 @@
 # EZSolder
-[![version](https://img.shields.io/badge/Version-2.0--beta-lightgrey.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
+[![version](https://img.shields.io/badge/Version-3.0--dev-lightgrey.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
 [![license](https://img.shields.io/badge/License-GPL-blue.svg?style=flat-square)](https://www.gnu.org/licenses/gpl-3.0.en.html)
 [![web](https://img.shields.io/badge/web-flawedspirit.com-blue.svg?style=flat-square)](https://flawedspirit.com)
 [![github](https://img.shields.io/badge/github-Flawedspirit%2FEZSolder-blue.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
