@@ -1,0 +1,26 @@
+html, body { background: #163f69 url("../images/background.png") bottom left; height: 100%; min-height: 100%; }
+
+.container { background-color: #ebebeb; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.75); min-height: 100%; padding: 2.5rem; }
+
+.hidden { visibility: hidden; }
+
+.primary, .button.primary, input[type="submit"].primary, input[type="reset"].primary, input[type="button"].primary { color: #ebebeb; background-color: #68a8dc; border: 1px solid #3f90d2; }
+
+.success, .button.success, input[type="submit"].success, input[type="reset"].success, input[type="button"].success { color: #ebebeb; background-color: #5cb85c; border: 1px solid #449d44; }
+
+.info, .button.info, input[type="submit"].info, input[type="reset"].info, input[type="button"].info { color: #ebebeb; background-color: #17a2b8; border-color: #17a2b8; }
+
+.warning, .button.warning, input[type="submit"].warning, input[type="reset"].warning, input[type="button"].warning { background-color: #f8de78; border: 1px solid #f5d248; }
+
+.error, .button.error, input[type="submit"].error, input[type="reset"].error, input[type="button"].error { color: #ebebeb; background-color: #d9534f; border: 1px solid #c9302c; }
+
+form input[type], form select { border: 1px solid #898989; border-radius: 0; box-shadow: 0 2px 3px rgba(32, 32, 32, 0.3); margin-bottom: 0.5rem; }
+form input[type][type="file"], form select[type="file"] { background-color: #fff; height: 38px; }
+form input[disabled] { background-color: #ccc; box-shadow: none; color: #898989; cursor: not-allowed; }
+form .form-help { color: #898989; margin-top: 0; }
+form .emphasize { color: #d9534f; }
+form .file-container { position: relative; overflow: hidden; }
+form .file-container input[type="button"] { background-color: #fff; }
+form .file-container input[type="file"] { font-size: 999px; opacity: 0; position: absolute; top: 0; left: 0; }
+
+/*# sourceMappingURL=ezsolder.css.map */
