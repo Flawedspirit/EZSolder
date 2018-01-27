@@ -51,13 +51,13 @@
                     <div class="form-label"><label for="files"><?php lang('label_dest'); ?></label></div>
                     <div class="form-input">
                         <input id="dest-mods" name="type" value="mods" type="radio" checked="checked" />
-                        <label class="radio-label" for="dest-mods"><span></span><?php lang('label_dest_mods'); ?></label>
+                        <label class="radio-label" for="dest-mods">/mods</label>
                         <input id="dest-config" name="type" value="config" type="radio" />
-                        <label class="radio-label" for="dest-config"><span></span><?php lang('label_dest_conf'); ?></label>
+                        <label class="radio-label" for="dest-config">/config</label>
                         <input id="dest-bin" name="type" value="bin" type="radio" />
-                        <label class="radio-label" for="dest-bin"><span></span><?php lang('label_dest_bin'); ?></label>
+                        <label class="radio-label" for="dest-bin">/bin</label>
                         <input id="dest-other" name="type" value="other" type="radio" />
-                        <label class="radio-label" for="dest-other"><span></span><?php lang('label_dest_other'); ?></label>
+                        <label class="radio-label" for="dest-other"><?php lang('label_dest_other'); ?></label>
                         <input class="form-control" id="otherfield" name="otherfield" type="text" />
                         <p class="form-help"><?php lang('help_dest'); ?></p>
                     </div>

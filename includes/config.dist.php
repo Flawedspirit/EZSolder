@@ -1,6 +1,6 @@
-<?php if(!defined('INDEX')) die('Direct access is not allowed.');
+<?php
 
-$config = array(
+return array(
 
 /*
 |------------------------------------------------------------------------------
@@ -14,22 +14,6 @@ $config = array(
  */
 
 'url' => '',
-
-/*
-|------------------------------------------------------------------------------
-| Solder Repository
-|------------------------------------------------------------------------------
-|
-| This is the path to where Solder expects the Minecraft resource files to
-| be. Please use the absolute path from the root of your webserver. Also make
-| sure the group responsible for operating your webserver (usually www-data)
-| has write permissions to the Solder repository.
-|
-| NOTICE: You must INCLUDE a trailing slash.
-|
- */
-
-'repository' => '',
 
 /*
 |------------------------------------------------------------------------------
@@ -56,7 +40,7 @@ $config = array(
 | desired directory, but will not update the database.
 |
 | NOTICE: This setting may represent a security risk. Make sure it is set to
-|         0 in a production environment.
+|         false in a production environment.
 |
  */
 
@@ -92,6 +76,22 @@ $config = array(
 
 /*
 |------------------------------------------------------------------------------
+| Solder Repository
+|------------------------------------------------------------------------------
+|
+| This is the path to where Solder expects the Minecraft resource files to
+| be. Please use the absolute path from the root of your webserver. Also make
+| sure the group responsible for operating your webserver (usually www-data)
+| has write permissions to the Solder repository.
+|
+| NOTICE: You must INCLUDE a trailing slash.
+|
+ */
+
+'repository' => '',
+
+/*
+|------------------------------------------------------------------------------
 | File Mode
 |------------------------------------------------------------------------------
 |
@@ -119,29 +119,20 @@ $config = array(
 | Database
 |------------------------------------------------------------------------------
 |
-| This is where the database connection is set up. Currently mysql and sqlite
-| are supported.
+| This is where the database connection is set up. Currently, the only
+| database type supported is mysql.
 |
-| If you opted to use a table prefix when you installed Solder, make sure to
+| If you opted to use table prefixes when you installed Solder, make sure to
 | enter it here.
 |
  */
 
-'database' => 'mysql',
-
-'connection' => array(
-    'mysql' => array(
-        'hostname' => '',
-        'database' => '',
-        'username' => '',
-        'password' => '',
-        'prefix'   => ''
-    ),
-
-    'sqlite' => array(
-        'database' => '',
-        'prefix'   => ''
-    )
+'database' => array(
+    'hostname' => '',
+    'database' => '',
+    'username' => '',
+    'password' => '',
+    'prefix'   => ''
 )
 
 );
