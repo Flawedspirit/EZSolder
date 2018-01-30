@@ -4,6 +4,12 @@ html, body { background: #163f69 url("../images/background.png") bottom left; he
 
 .hidden { visibility: hidden; }
 
+.panel { box-shadow: 0 2px 3px rgba(32, 32, 32, 0.3); margin-bottom: 2.5rem; padding: 6px 10px; }
+.panel > span::before { font-size: 24pt; }
+.panel > span { display: table-cell; vertical-align: middle; width: 32px; }
+.panel > span.icon-info::before { font-family: 'Pe-icon-7-stroke'; content: "\e647"; }
+.panel p { display: table-cell; height: 100%; padding-left: 1rem; vertical-align: middle; width: 100%; }
+
 .primary, .button.primary, input[type="submit"].primary, input[type="reset"].primary, input[type="button"].primary { color: #ebebeb; background-color: #68a8dc; border: 1px solid #3f90d2; }
 
 .success, .button.success, input[type="submit"].success, input[type="reset"].success, input[type="button"].success { color: #ebebeb; background-color: #5cb85c; border: 1px solid #449d44; }

@@ -1,13 +1,41 @@
 $(document).ready(function() {
+	var $modrepo    = $('#repository');
+	var $modname    = $('#modname');
+	var $modauthor  = $('#modauthor');
+	var $modslug    = $('#modslug');
+	var $modversion = $('#modversion');
+	var $mcversion  = $('#mcversion');
+	var $modfile    = $('#file');
+	var $modtype    = $('#type');
+	var $otherfield = $('#otherfield');
+	var upload_version;
 
-	var file;
+	//Automatically slugify mod name
+	$modname.on('change textInput input', function() {
+		$modslug.val(slugify($modname.val()));
+	});
 
 	// Handle file input field
-	$('#file').on('change', fileUpload);
+	$modfile.on('change', fileUpload);
 
 	// Handle custom destination field
-	$('#type').change(function() {
-		$('input[name=otherfield]').prop('disabled', !($('#type').val() == "dest-other"));
+	$modtype.change(function() {
+		$otherfield.prop('disabled', !($('#type').val() == "dest-other"));
+	});
+
+	$('input').on('change textInput input', function() {
+		if($modslug.val() && $modversion.val() && $modfile.val()) {
+			$('#upload-info').show();
+			if($('#use-mc-version').prop('checked')) {
+				upload_version = '-' + $mcversion.val() + '-' + $modversion.val();
+			} else {
+				upload_version = '-' + $modversion.val();
+			}
+
+			$('#file-to-upload').html('<b>&lt;repository&gt;/' + $modslug.val() + '/' + $modslug.val() + upload_version + '.zip</b>');
+		} else {
+			$('#upload-info').hide();
+		}
 	});
 
 	// Ensure form is reset properly
@@ -21,14 +49,15 @@ $(document).ready(function() {
 		// Handle basic evaluation here
 		// TO-DO
 
+		var file;
 		var formData = new FormData();
-		formData.append('modname', $('input[name=modname]').val());
-		formData.append('modauthor', $('input[name=modauthor]').val());
-		formData.append('modslug', $('input[name=modslug]').val());
+		formData.append('modname',    $modname.val());
+		formData.append('modauthor',  $('input[name=modauthor]').val());
+		formData.append('modslug',    $('input[name=modslug]').val());
 		formData.append('modversion', $('input[name=modversion]').val());
-		formData.append('modtype', $('select[name=type]').val());
+		formData.append('modtype',    $('select[name=type]').val());
 		formData.append('otherfield', $('input[name=otherfield]').val());
-		formData.append('file', file[0]);
+		formData.append('file'),      $('input[name=file')[0].files;
 
 		$.ajax({
 			type: 'POST',
@@ -37,7 +66,6 @@ $(document).ready(function() {
 			dataType: 'json',
 			processData: false,
 			contentType: false,
-			encode: true
 		}).done(function(data) {
 			console.log(data); // Remove in production
 		});

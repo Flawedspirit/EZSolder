@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="./public/css/normalize.css">
     <link rel="stylesheet" type="text/css" href="./public/css/skeleton.css">
     <link rel="stylesheet" type="text/css" href="./public/css/ezsolder.css">
-    <script defer src="//use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" type="text/css" href="./public/css/pe-icon-7-stroke.css">
 
 	<title>EZSolder Uploader</title>
 </head>
