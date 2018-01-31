@@ -21,7 +21,7 @@
                     <div class="six columns">
                         <label for="modauthor"><?php lang('label_author'); ?></label>
                         <input id="modauthor" class="u-full-width" type="text" name="modauthor">
-                        <p class="form-help"><?php lang('help_optional'); ?></p>
+                        <p class="form-help emphasize"><?php lang('help_optional'); ?></p>
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                 <div id="upload-info" class="row" style="display: none;">
                     <div class="panel info">
                         <span class="icon-info"></span>
-                        <p><?php lang('help_to_upload1'); ?><br/><span id="file-to-upload"></span><br/><?php lang('help_to_upload2'); ?></p>
+                        <p><?php lang('help_to_upload1'); ?><br/><span id="file-to-upload" class="monospace"></span><br/><?php lang('help_to_upload2'); ?></p>
                     </div>
                 </div>
 
