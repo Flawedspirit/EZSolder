@@ -21,7 +21,7 @@
                     <div class="six columns">
                         <label for="modauthor"><?php lang('label_author'); ?></label>
                         <input id="modauthor" class="u-full-width" type="text" name="modauthor">
-                        <p class="form-help emphasize"><?php lang('help_optional'); ?></p>
+                        <p class="form-help emphasize"><?php lang('help_new_only'); ?></p>
                     </div>
                 </div>
 

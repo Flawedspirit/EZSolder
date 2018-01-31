@@ -18,10 +18,10 @@
         <div class="header">
             <div class="title">
                 <a href="<?php echo $config['url']; ?>">
-                    <img class="float-left" src="logo.png" alt="Logo" />
-                    <h1 class="float-left">EZSolder</h1>
-                </a><span class="version float-left">2.1-beta</span>
-                <div style="clear: both;"></div>
+                    <img class="u-pull-left" src="logo.png" alt="Logo" />
+                    <h1 class="u-pull-left">EZSolder</h1>
+                </a><span class="version u-pull-left">2.1.3-beta</span>
+                <div class="u-cf"></div>
                 <p><?php lang('subtitle'); ?></p>
             </div>
         </div>
