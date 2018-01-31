@@ -110,7 +110,7 @@ function logMessage($message, $level = "debug", $should_die = false) {
         'error'   => 'error'
     );
 
-    echo sprintf("<div class=\"infobox %s\">", $levels[$level]);
+    echo sprintf("<div class=\"panel %s\">", $levels[$level]);
     echo sprintf("<span class=\"icon-%s\"></span><p>%s</p>", $level, $message);
     echo '</div>';
 

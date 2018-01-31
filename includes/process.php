@@ -35,14 +35,16 @@ function outputErrorMessage($ex) {
 }
 
 $data = array(
-    'path'       => $config["repository"],
-    'modname'    => $_POST["modname"],
-    'modauthor'  => $_POST["modauthor"],
-    'modslug'    => $_POST["modslug"],
-    'version'    => $_POST["modversion"],
-    'files'      => $_FILES["files"],
-    'modtype'    => $_POST["type"],
-    'otherfield' => $_POST["otherfield"]
+    'path'           => $config["repository"],
+    'modname'        => $_POST["modname"],
+    'modauthor'      => $_POST["modauthor"],
+    'modslug'        => $_POST["modslug"],
+    'version'        => $_POST["modversion"],
+    'mcversion'      => $_POST["mcversion"],
+    'use_mcversion'  => isset($_POST["use-mc-version"]) ? true : false,
+    'files'          => $_FILES["file"],
+    'modtype'        => $_POST["type"],
+    'otherfield'     => isset($_POST["otherfield"]) ? $_POST["otherfield"] : ""
 );
 
 if($config['debug']) {
@@ -52,19 +54,25 @@ if($config['debug']) {
         Author: {$data['modauthor']}<br />
         Slug: {$data['modslug']}<br />
         Version: {$data['version']}<br />
+        Version: {$data['mcversion']} (Use: {$data['use_mcversion']})<br />
         Destination: {$data['modtype']}<br />
         Other field: {$data['otherfield']}<br />"
     );
 }
 
 $final_path = $data['path'] . $data['modslug'] . '/';
+$up_version = $data['version'];
 
 if($data['modtype'] == "other") {
     $update = array('modtype' => $data['otherfield']);
     $data = array_merge($data, array_intersect_key($update, $data));
 }
 
-// One last sanity check.
+if($data['use_mcversion'] && !empty($data['mcversion'])) {
+    $up_version = sprintf('mc%s-%s', $data['mcversion'], $data['version']);
+}
+
+// One last validation check.
 if(empty($data['path']) ||
     empty($data['modslug']) ||
     empty($data['version']) ||
@@ -92,7 +100,7 @@ try {
 }
 
 try {
-    if(update_db($db, $data, $final_path . $data['modslug'] . '-' . $data['version'] . '.zip'))
+    if(update_db($db, $data, $final_path . $data['modslug'] . '-' . $up_version . '.zip'))
         // Everything went well with the database update
         logMessage(lang('success_db', true), 'success');
 } catch(Exception $x) {
@@ -109,7 +117,7 @@ function debug($exception) {
 function makeDirectory($path) {
     if(!is_dir($path)) {
         try {
-            mkdir($path);
+            @mkdir($path);
         } catch(Exception $x) {
             outputErrorMessage($x);
         }
@@ -119,14 +127,13 @@ function makeDirectory($path) {
 $final_path = $data['path'] . $data['modslug'] . '/';
 
 function packageFiles($path) {
-    global $config, $data;
+    global $config, $data, $up_version;
 
     // If the file is already a zip file, simply move it to the proper directory
     // Zip file should start with 0x504b ("PK")
     $fhandle = fopen($data['files']['tmp_name'], "r");
     $metadata = fread($fhandle, 2);
-
-    $file_name = $data['modslug'] . '-' . $data['version'] . ".zip";
+    $file_name = sprintf('%s-%s.zip', $data['modslug'], $up_version);
     $file_out = $path . $file_name;
 
     if($metadata === "PK" && substr($data['files']['name'], -4) === ".zip") {

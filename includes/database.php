@@ -36,7 +36,7 @@ function update_db($db, $data, $file) {
 
     if(!$config['upload_only']) {
         $prefix = $config['database']['prefix'];
-        $hash = md5_file($file);
+        $hash = @md5_file($file);
         $time = date("Y-m-d h:i:s");
 
         // First search of database to get initial state of the mod entry
@@ -62,9 +62,15 @@ function update_db($db, $data, $file) {
         $result = get_mod_entry($data['modslug']);
         $last_mod_id = $result->fetch_row()[0];
 
+        if($data['use_mcversion'] && !empty($data['mcversion'])) {
+            $db_version = sprintf('mc%s-%s', $data['mcversion'], $data['version']);
+        } else {
+            $db_version = $data['version'];
+        }
+
         try {
             $s_insert = $db->prepare("INSERT INTO " . $prefix . 'modversions' . " (mod_id, version, md5, created_at, updated_at) VALUES (?, ?, ?, ?, ?)");
-            $s_insert->bind_param('issss', $last_mod_id, $data['version'], $hash, $time, $time);
+            $s_insert->bind_param('issss', $last_mod_id, $db_version, $hash, $time, $time);
             $s_insert->execute();
             $s_insert->store_result();
 

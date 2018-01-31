@@ -1,10 +1,51 @@
-$('#modname').on("change textInput input", function() {
-    $('#modslug').val(slugify($('#modname').val()));
+var $modrepo    = $('#repository');
+var $modname    = $('#modname');
+var $modauthor  = $('#modauthor');
+var $modslug    = $('#modslug');
+var $modversion = $('#modversion');
+var $mcversion  = $('#mcversion');
+var $modfile    = $('#file');
+var $modtype    = $('#type');
+var $otherfield = $('#otherfield');
+var upload_version;
+
+//Automatically slugify mod name
+$modname.on('change textInput input', function() {
+    $modslug.val(slugify($modname.val()));
 });
 
-$('#modslug').autocomplete({
+$modslug.autocomplete({
     source: 'includes/search.php',
     minLength: 3
+});
+
+// Handle file input field
+$modfile.on('change', fileUpload);
+
+// Handle custom destination field
+$modtype.change(function() {
+    $otherfield.prop('disabled', !($('#type').val() == "dest-other"));
+});
+
+$('input').on('change textInput input', function() {
+    if($modslug.val() && $modversion.val() && $modfile[0].files) {
+        $('#upload-info').show();
+        if($('#use-mc-version').prop('checked')) {
+            upload_version = '-mc' + $mcversion.val() + '-' + $modversion.val();
+        } else {
+            upload_version = '-' + $modversion.val();
+        }
+
+        $('#file-to-upload').html('<b>&lt;repository&gt;/' + $modslug.val() + '/' + $modslug.val() + upload_version + '.zip</b>');
+    } else {
+        $('#upload-info').hide();
+    }
+});
+
+// Ensure form is reset properly
+$('input[type=reset]').click(function() {
+    $otherfield.prop('disabled', true);
+    location.reload();
 });
 
 function slugify(text){
@@ -16,25 +57,30 @@ function slugify(text){
     .replace(/-+$/, '');                  // Trim - from end of text
 }
 
+function fileUpload(event) {
+    file = event.target.files;
+    $('#file-button').attr('value', "Uploading " + file[0].name);
+}
+
 function validate() {
     var notices = [];
 
-    if($('#dest-other').is(':checked') && $('#otherfield').val() == "") {
+    if($modtype.val() == "dest-other" && $('#otherfield').val() == "") {
         notices.push("A directory name must be entered if \"other\" is selected.");
-        $('#otherfield').focus();
+        $otherfield.focus();
     }
-    if($('#files').val() == "") {
+    if($modfile.val() == "") {
         notices.push("You must choose a file to upload.");
     }
-    if($('#modversion').val() == "") {
+    if($modversion.val() == "") {
         notices.push("A version string must be entered.");
-        $('#modversion').focus();
+        $modversion.focus();
     }
-    if($('#modslug').val() == "") {
+    if($modslug.val() == "") {
         notices.push("A mod slug must be entered.");
-        $('#modslug').focus();
+        $modtype.focus();
     }
-    if($('#repository').val() == "") {
+    if($modrepo.val() == "") {
         notices.push("The mod repository path must be entered.");
     }
 

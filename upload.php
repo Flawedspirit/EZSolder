@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html>
     <?php include 'includes/html/head.php'; ?>
-        <div id="content">
+        <div class="content">
             <?php require 'includes/process.php'; ?>
-            <button class="button info" onclick="window.history.back();">&larr; <?php lang('button_return'); ?></button>
+            <input class="primary" type="button" onclick="window.history.back();" value="&larr; <?php lang('button_return'); ?>">
+            <?php include 'includes/html/footer.php'; ?>
         </div>
-        <?php include 'includes/html/footer.php'; ?>
     </div>
 </body>
 </html>

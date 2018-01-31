@@ -5,7 +5,7 @@ if($no_config == 1) logMessage('Cannot access the configuration file. This file 
 global $db;
 
 // The disclaimer that will show on first start
-echo "<div id=\"disclaimer\" class=\"infobox info\" style=\"display: none;\">";
+echo "<div id=\"disclaimer\" class=\"panel info\" style=\"display: none;\">";
 echo "<span class=\"icon-info\"></span><p>";
 echo lang('introduction', true,  array('<span class="hr"></span>', '<br /><br />', '<br /><br />', '<br /><br /><a id="btn-notice" href="#"><strong>Got it. Let\'s do this!</strong></a>'));
 echo "</p></div>";
@@ -20,4 +20,4 @@ if($notices['warn_no_locale']   == 1) logMessage(lang('warning_no_locale', true,
 if($notices['warn_no_fallbk']   == 1) logMessage(lang('warning_no_fallbk', true), 'warn');
 
 ?>
-<div id="val-errors" class="infobox error" style="display: none;"><p></p></div>
+<div id="val-errors" class="panel error" style="display: none;"><p></p></div>

@@ -3,80 +3,98 @@
 <!DOCTYPE html>
 <html>
     <?php include 'includes/html/head.php'; ?>
-        <div id="content">
-        <?php include 'includes/notify.php'; ?>
-            <form id="upload-form" name="main" enctype="multipart/form-data" action="upload.php" onsubmit="return validate();" method="POST">
-                <div class="form-group">
-                    <div class="form-label"><label for="repository"><?php lang('label_repo'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control disabled" id="repository" name="repository" type="text" value="<?php echo $config['repository']; ?>" disabled="disabled" />
-                        <p class="form-help"><?php lang('help_repo'); ?></p>
+        <div class="content">
+            <?php include 'includes/notify.php'; ?>
+            <form id="upload-form" action="upload.php" onsubmit="return validate();" enctype="multipart/form-data" method="POST">
+                <div class="row">
+                    <label for="repository"><?php lang('label_repo'); ?></label>
+                    <input id="repository" class="u-full-width" type="text" name="repository" value="<?php echo $config['repository']; ?>" disabled>
+                    <p class="form-help"><?php lang('help_repo'); ?></p>
+                </div>
+                <div class="row">
+                    <div class="six columns">
+                        <label for="modname"><?php lang('label_name'); ?></label>
+                        <input id="modname" class="u-full-width" type="text" name="modname">
+                        <p class="form-help emphasize"><?php lang('help_new_only'); ?></p>
+                    </div>
+
+                    <div class="six columns">
+                        <label for="modauthor"><?php lang('label_author'); ?></label>
+                        <input id="modauthor" class="u-full-width" type="text" name="modauthor">
+                        <p class="form-help"><?php lang('help_optional'); ?></p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="modname"><?php lang('label_name'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control" id="modname" name="modname" type="text" />
-                        <p class="form-help"><?php lang('help_new_only'); ?></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="modauthor"><?php lang('label_author'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control" id="modauthor" name="modauthor" type="text" />
-                        <p class="form-help"><?php lang('help_new_only'); ?></p>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="modslug"><?php lang('label_slug'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control" id="modslug" name="modslug" type="text" />
+
+                <div class="row">
+                    <div class="six columns">
+                        <label for="modslug"><?php lang('label_slug'); ?></label>
+                        <input id="modslug" class="u-full-width" type="text" name="modslug">
+                        <p class="form-help emphasize"><?php lang('help_required'); ?></p>
+
+                        <label for="modversion"><?php lang('label_version'); ?></label>
+                        <input id="modversion" class="u-full-width" type="text" name="modversion">
                         <p class="form-help emphasize"><?php lang('help_required'); ?></p>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="modversion"><?php lang('label_version'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control" id="modversion" name="modversion" type="text" />
-                        <p class="form-help emphasize"><?php lang('help_required'); ?></p>
+
+                    <div class="six columns">
+                        <label for="mcversion"><?php lang('label_mcversion'); ?></label>
+                        <input id="mcversion" class="u-full-width" type="text" name="mcversion">
+                        <label>
+                            <input id="use-mc-version" type="checkbox" name="use-mc-version">
+                            <span class="label-body"><?php lang('label_use_mcversion'); ?></span>
+                        </label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="files"><?php lang('label_files'); ?></label></div>
-                    <div class="form-input">
-                        <input class="form-control" id="files" name="files" type="file" />
+
+                <div class="row">
+                    <div class="six columns">
+                        <label for="file"><?php lang('label_files'); ?></label>
+                        <div class="file-container">
+                            <input id="file-button" class="u-full-width" type="button" name="file-button" value="Click or drag a file here to upload it">
+                            <input id="file" class="u-full-width" type="file" name="file">
+                            <p class="form-help hidden">.</p>
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-label"><label for="files"><?php lang('label_dest'); ?></label></div>
-                    <div class="form-input">
-                        <input id="dest-mods" name="type" value="mods" type="radio" checked="checked" />
-                        <label class="radio-label" for="dest-mods">/mods</label>
-                        <input id="dest-config" name="type" value="config" type="radio" />
-                        <label class="radio-label" for="dest-config">/config</label>
-                        <input id="dest-bin" name="type" value="bin" type="radio" />
-                        <label class="radio-label" for="dest-bin">/bin</label>
-                        <input id="dest-other" name="type" value="other" type="radio" />
-                        <label class="radio-label" for="dest-other"><?php lang('label_dest_other'); ?></label>
-                        <input class="form-control" id="otherfield" name="otherfield" type="text" />
+
+                <div class="row">
+                    <div class="six columns">
+                        <label for="type"><?php lang('label_dest'); ?></label>
+                        <select id="type" class="u-full-width" name="type">
+                            <option value="bin">bin</option>
+                            <option value="config">config</option>
+                            <option value="mods" selected>mods</option>
+                            <option value="scripts">scripts</option>
+                            <option value="dest-other"><?php lang('label_dest_other'); ?></option>
+                        </select>
+                    </div>
+
+                    <div class="six columns">
+                        <label class="hidden" for="otherfield">.</label>
+                        <input id="otherfield" class="u-full-width" type="text" name="otherfield" disabled>
                         <p class="form-help"><?php lang('help_dest'); ?></p>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-label"><label></label></div>
-                    <div class="form-input">
-                        <button class="button info" type="submit"><?php lang('button_upload'); ?></button>
-                        <button class="button error" type="reset"><?php lang('button_reset'); ?></button>
+
+                <div id="upload-info" class="row" style="display: none;">
+                    <div class="panel info">
+                        <span class="icon-info"></span>
+                        <p><?php lang('help_to_upload1'); ?><br/><span id="file-to-upload"></span><br/><?php lang('help_to_upload2'); ?></p>
                     </div>
+                </div>
+
+                <div class="row">
+                    <input class="primary" type="submit" value="<?php lang('button_upload'); ?>">
+                    <input class="error" type="reset" value="<?php lang('button_reset'); ?>">
                 </div>
             </form>
         </div>
         <?php include 'includes/html/footer.php'; ?>
     </div>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="includes/js/js.cookie.js"></script>
-    <script type="text/javascript" src="includes/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="includes/js/input.js"></script>
+    <script type="text/javascript" src="includes/js/input.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
             $('#btn-notice').click(function() {
