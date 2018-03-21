@@ -1,7 +1,7 @@
 # EZSolder
 [![version](https://img.shields.io/badge/version-2.1.3--beta-lightgrey.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
 [![license](https://img.shields.io/badge/License-GPL-blue.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
-[![web](https://img.shields.io/badge/web-flawedspirit.com-blue.svg?style=flat-square)](https://flawedspirit.com)
+[![web](https://img.shields.io/badge/web-flawedspirit.com-blue.svg?style=flat-square)](https://flawedspirit.com/projects#ezsolder)
 [![github](https://img.shields.io/badge/github-Flawedspirit%2FEZSolder-blue.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
 
 ## What is EZSolder?
