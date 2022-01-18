@@ -4,6 +4,8 @@
 [![web](https://img.shields.io/badge/web-flawedspirit.com-blue.svg?style=flat-square)](https://flawedspirit.com/projects#ezsolder)
 [![github](https://img.shields.io/badge/github-Flawedspirit%2FEZSolder-blue.svg?style=flat-square)](https://github.com/Flawedspirit/EZSolder)
 
+## THIS PROJECT IS ARCHIVED AND NO LONGER BEING UPDATED
+
 ## What is EZSolder?
 EZSolder is a faster way of packaging and uploading an assortment of files that are of use in a Minecraft Technic modpack. Solder is a wonderful tool but as of this point, it does not support uploading a file to its proper location and format from its interface. The process is manual and laborious. Until then, or maybe even beyond, EZSolder is here to fill that gap.
 
